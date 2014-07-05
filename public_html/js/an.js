@@ -10,7 +10,7 @@ function CarOutCtrl($scope, $http) {
   };
   $scope.license_number = "";
   
-  $scope.url = "http://www.google.co.th/?gws_rd=cr,ssl&ei=Br63U5OZF9OKuATqt4DIBQ";
+  $scope.url = "test.json";
   $scope.fetch = function() {
 	  $scope.hide_result();
 	  $scope.loading();
@@ -18,14 +18,31 @@ function CarOutCtrl($scope, $http) {
 	  $scope.data.license_number = $scope.license_number;
 	  $scope.data.province = $scope.selected_province;
 	  
-	  $http.post($scope.url, data, {withCredentials: true, headers: {'Access-Control-Allow-Origin': '*', "Access-Control-Allow-Origin": "Origin, X-Requested-With, Content-Type, Accept"}}).
-	  //$http({
-		//  withCredentials: true,
-		//  method: 'POST',
-		//  url: $scope.url,
-		//  data: $scope.data,
-		//  headers: {"Access-Control-Allow-Origin": "*", "Access-Control-Allow-Methods": "POST, GET, OPTIONS, PUT", "Access-Control-Allow-Origin": "Origin, X-Requested-With, Content-Type, Accept"}
-	  //}).
+	  /* Method 1 */
+	  $.getJSON($scope.url, function(result) {
+		  alert("Hello");
+	  });
+	  return;
+	  
+	  /* Method 2 */
+	  $.ajax({
+	      url: $scope.url,
+	      dataType: 'jsonp',
+	      type: 'POST',
+		  data: data,
+	      success: function (data) {
+			  $scope.load_finished();
+	      }
+	  });
+	  return;
+	  
+	  /* Method 3 */
+	  $http.jsonp($scope.url, {
+		  params: {
+			  license_number: $scope.license_number,
+			  province: $scope.provinces[$scope.selected_province]
+		  }
+	  }).
 	    success(function(data, status, headers, config) {
 	      // this callback will be called asynchronously
 	      // when the response is available
@@ -36,9 +53,6 @@ function CarOutCtrl($scope, $http) {
 	      // or server returns response with an error status.
 		  $scope.load_failed();
 	    });
-	//.then(function(response) {
-    //$scope.load_finished();
-	//});
   }
   
   $scope._loading = false;
