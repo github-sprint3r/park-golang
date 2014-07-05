@@ -19,10 +19,10 @@ function CarOutCtrl($scope, $http) {
 	  $scope.data.province = $scope.selected_province;
 	  
 	  /* Method 1 */
-	  //$.getJSON($scope.url, function(result) {
-	//	  alert("Hello");
-	  //});
-	  //return;
+	  $.getJSON($scope.url, function(result) {
+		  alert("Hello");
+	  });
+	  return;
 	  
 	  /* Method 2 */
 	  $.ajax({
