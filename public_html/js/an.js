@@ -10,7 +10,7 @@
   };
   $scope.license_number = "";
   
-  $scope.url = "http://119.59.97.33:8080";
+  $scope.url = "http://119.59.97.33:3333/parkfee";
   $scope.fetch = function() {
 	  $scope.hide_result();
 	  $scope.loading();
@@ -21,10 +21,9 @@
 	  
 	  
 	  /* Method 1 */
-	  //$.getJSON($scope.url, function(result) {
-		  //alert("Hello");
-		  //alert(result);
-	  //});
+	  $.getJSON($scope.url, function(result) {
+		  alert("Hello");
+	  });
 	  return;
 	  
 	  /* Method 2 */
