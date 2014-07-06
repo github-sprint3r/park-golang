@@ -34,33 +34,14 @@
 					var nextHourFee = $("#nextHourFee").val() ? undefined : '';
 					var midnightFee = $("#midnightFee").val() ? undefined : '';
 
-					var allowSubmit = false;
-
 					if(firstHourFee != '' && secondAndThirdHourFee != '' && nextHourFee != '' && midnightFee != ''){
 							$( "#configfee" ).submit();
+					} else {
+						$("#firstHourFeeError").removeClass('hide');
+						$("#secondAndThirdHourFeeError").removeClass('hide');
+						$("#nextHourFeeError").removeClass('hide');
+						$("#midnightFeeError").removeClass('hide');
 					}
-
-					// else{
-					//
-					// 		if(firstHourFee == '' ){
-					// 			 $("#firstHourFeeError").removeClass('hide');
-					// 		}else{
-					// 			 $("#firstHourFeeError").removeClass();
-					// 		}
-					//
-					// 		if(secondAndThirdHourFee == '' ){
-					//
-					// 		}
-					//
-					// 		if(nextHourFee == '' ){
-					//
-					// 		}
-					//
-					// 		if(midnightFee == '' ){
-					//
-					// 		}
-					// }
-
 				});
 
 				$("#firstHourFee").focusout(function() {
