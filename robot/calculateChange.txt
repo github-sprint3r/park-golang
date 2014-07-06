@@ -3,9 +3,9 @@ Library    Selenium2Library
 	
 
 ***Variables***
-${park_golang_url}     http://localhost:8080/calculate.html
+${park_golang_url}     http://119.59.97.33:3333/calculate.html
 
-#http://119.59.97.33:3333/calculate.html
+# http://localhost:8080/calculate.html
 
 ***Testcases ***
 NormalUse
