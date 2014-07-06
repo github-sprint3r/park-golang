@@ -135,7 +135,7 @@
 </body>
 <script>
 
-	var API_URL = (document.location.hostname == "localhost")? 'http://localhost:8080': 'http://119.59.97.33:3333';
+	// var API_URL = (document.location.hostname == "localhost")? 'http://localhost:': 'http://192.168.100.17:';
 
 	$(document).ready(function() {
 		$("#btn-cal").on('click',function(e){
@@ -162,7 +162,7 @@
 
 		$.ajax({
 			type: "GET",
-			url: API_URL + "/calculatechange/" + price + "/" + cash,
+			url: "/calculatechange/" + price + "/" + cash,
 			success: function(res) {
 				if (res.status === "success") {
 					$("#lbl-msg-warning").addClass("hide");
