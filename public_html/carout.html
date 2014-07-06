@@ -63,10 +63,10 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<input type="text" class="form-control" placeholder="เลขทะเบียน" ng-model="license_number">
+				<input id="license" type="text" class="form-control" placeholder="เลขทะเบียน" ng-model="license_number">
 			</div>
 			<div class="col-md-6">
-				<select class="form-control" ng-model="selected_province">
+				<select id="province" class="form-control" ng-model="selected_province">
 					<option ng-repeat="province in provinces">{{province}}</option>
 				</select>
 			</div>
@@ -76,7 +76,7 @@
 			<div class="col-md-6">
 			</div>
 			<div class="col-md-6">
-				<button type="button" class="btn btn-primary" ng-click="fetch()" ng-disabled="is_loading()">คำนวณค่าจอด</button>
+				<button id="btn_calculate" type="button" class="btn btn-primary" ng-click="fetch()" ng-disabled="is_loading()">คำนวณค่าจอด</button>
 			</div>
 		</div>
 	</div>
