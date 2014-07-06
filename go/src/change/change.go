@@ -1,5 +1,14 @@
 package change
 
+import (
+	"net/http"
+	"fmt"
+)
+
+func calculateChange(response http.ResponseWriter, request *http.Request) {
+	fmt.Fprintf(response, ``)
+}
+
 func getDefaultCashList() map[float64]int {
 	defaultCashList := map[float64]int{
 		1000: 0,
@@ -8,11 +17,6 @@ func getDefaultCashList() map[float64]int {
 		50:   0,
 		20:   0,
 		10:   0,
-		5:    0,
-		2:    0,
-		1:    0,
-		0.50: 0,
-		0.25: 0,
 	}
 
 	return defaultCashList
@@ -35,6 +39,7 @@ func changeCalculate(parkingCosting int, cash int) map[float64]int {
 
 	remain := cash - parkingCosting
 
+	cashList[1000], remain = calculateRemain(remain, 1000)
 	cashList[500], remain = calculateRemain(remain, 500)
 	cashList[100], remain = calculateRemain(remain, 100)
 	cashList[50], remain = calculateRemain(remain, 50)

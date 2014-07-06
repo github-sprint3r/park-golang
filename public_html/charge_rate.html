@@ -2,57 +2,198 @@
 <html>
 <head>
 	<title></title>
-	<style type="text/css">
-		span {
-			color: red;
-		}
-	</style>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	
-	<script src="js/angular.min.js"></script>
+
+	<style type="text/css">
+		span {
+			color: red;
+		}
+
+		.hide{
+			display : none;
+		}
+
+	</style>
+
+	<script src="js/jquery-1.11.1.min.js"></script>
+	<script >
+		$( document ).ready(function() {
+
+    	  $("#buttonSaveFee").click(function() {
+
+  				var firstHourFee = $("#firstHourFee").val() ? undefined : '';
+					var secondAndThirdHourFee = $("#secondAndThirdHourFee").val()? undefined : '';
+					var nextHourFee = $("#nextHourFee").val() ? undefined : '';
+					var midnightFee = $("#midnightFee").val() ? undefined : '';
+
+					var allowSubmit = false;
+
+					if(firstHourFee != '' && secondAndThirdHourFee != '' && nextHourFee != '' && midnightFee != ''){
+							$( "#configfee" ).submit();
+					}
+
+					// else{
+					//
+					// 		if(firstHourFee == '' ){
+					// 			 $("#firstHourFeeError").removeClass('hide');
+					// 		}else{
+					// 			 $("#firstHourFeeError").removeClass();
+					// 		}
+					//
+					// 		if(secondAndThirdHourFee == '' ){
+					//
+					// 		}
+					//
+					// 		if(nextHourFee == '' ){
+					//
+					// 		}
+					//
+					// 		if(midnightFee == '' ){
+					//
+					// 		}
+					// }
+
+				});
+
+				$("#firstHourFee").focusout(function() {
+					var firstHourFee = $("#firstHourFee").val() ? undefined : '';
+					if(firstHourFee == ''){
+						$("#firstHourFeeError").removeClass('hide');
+					}else{
+						$("#firstHourFeeError").addClass('hide');
+					}
+				});
+
+
+				$("#firstHourFee").keyup(function() {
+					var firstHourFee = $("#firstHourFee").val() ? undefined : '';
+					if(firstHourFee == ''){
+						$("#firstHourFeeError").removeClass('hide');
+					}else{
+						$("#firstHourFeeError").addClass('hide');
+					}
+				});
+
+				$("#secondAndThirdHourFee").focusout(function() {
+					var firstHourFee = $("#secondAndThirdHourFee").val() ? undefined : '';
+					if(firstHourFee == ''){
+						$("#secondAndThirdHourFeeError").removeClass('hide');
+					}else{
+						$("#secondAndThirdHourFeeError").addClass('hide');
+					}
+				});
+
+
+				$("#secondAndThirdHourFee").keyup(function() {
+					var firstHourFee = $("#secondAndThirdHourFee").val() ? undefined : '';
+					if(firstHourFee == ''){
+						$("#secondAndThirdHourFeeError").removeClass('hide');
+					}else{
+						$("#secondAndThirdHourFeeError").addClass('hide');
+					}
+				});
+
+				$("#nextHourFee").focusout(function() {
+					var firstHourFee = $("#nextHourFee").val() ? undefined : '';
+					if(firstHourFee == ''){
+						$("#nextHourFeeError").removeClass('hide');
+					}else{
+						$("#nextHourFeeError").addClass('hide');
+					}
+				});
+
+
+				$("#nextHourFee").keyup(function() {
+					var firstHourFee = $("#nextHourFee").val() ? undefined : '';
+					if(firstHourFee == ''){
+						$("#nextHourFeeError").removeClass('hide');
+					}else{
+						$("#nextHourFeeError").addClass('hide');
+					}
+				});
+
+				$("#midnightFee").focusout(function() {
+					var firstHourFee = $("#midnightFee").val() ? undefined : '';
+					if(firstHourFee == ''){
+						$("#midnightFeeError").removeClass('hide');
+					}else{
+						$("#midnightFeeError").addClass('hide');
+					}
+				});
+
+
+				$("#midnightFee").keyup(function() {
+					var firstHourFee = $("#midnightFee").val() ? undefined : '';
+					if(firstHourFee == ''){
+						$("#midnightFeeError").removeClass('hide');
+					}else{
+						$("#midnightFeeError").addClass('hide');
+					}
+				});
+
+
+
+  	});
+	</script>
+
 </head>
 <body>
 	<div class="row">
 		<div class="col-md-7 col-md-offset-3">
-			<form class="form-horizontal" role="form">
+			<form class="form-horizontal" id="configfee" role="form">
 			  <div class="form-group">
 			    <label for="firstHourFee" class="col-sm-3 control-label"><span>*</span>จอดชั่วโมงแรก</label>
 			    <div class="col-sm-5">
 			      <input type="text" class="form-control" id="firstHourFee">
+						<div class="alert alert-danger hide" id="firstHourFeeError" role="alert">
+							กรอกนะจ๊ะ
+						</div>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="secondAndThirdHourFee" class="col-sm-3 control-label"><span>*</span>จอดชั่วโมงที่ 2-3</label>
 			    <div class="col-sm-5">
 			      <input type="text" class="form-control" id="secondAndThirdHourFee">
+						<div class="alert alert-danger hide" id="secondAndThirdHourFeeError" role="alert">
+							กรอกนะจ๊ะ
+						</div>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="nextHourFee" class="col-sm-3 control-label"><span>*</span>จอดชั่วโมงต่อไป</label>
 			    <div class="col-sm-5">
 			      <input type="text" class="form-control" id="nextHourFee">
+						<div class="alert alert-danger hide" id="nextHourFeeError" role="alert">
+							กรอกนะจ๊ะ
+						</div>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="midnightFee" class="col-sm-3 control-label"><span>*</span>จอดเวลา 23:30 - 09:00</label>
 			    <div class="col-sm-5">
 			      <input type="text" class="form-control" id="midnightFee">
+						<div class="alert alert-danger hide" id="midnightFeeError" role="alert">
+							กรอกนะจ๊ะ
+						</div>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <div class="col-sm-offset-3 col-sm-10">
-			      <button type="submit" class="btn btn-default" id="buttonSaveFee">บันทึก</button>
+			      <button type="button" class="btn btn-default" id="buttonSaveFee">บันทึก</button>
 			    </div>
 			  </div>
 			  <label class="col-sm-3 control-label"><span>*</span>บังคับกรอก</label>
 			</form>
 		</div>
 	</div>
-	
+
 </body>
 </html>
