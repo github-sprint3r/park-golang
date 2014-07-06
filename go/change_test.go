@@ -5,8 +5,22 @@ import (
 	"testing"
 )
 
+func TestParkingCost20AndCash500ShouldReturn100With4And50With1And20WithOneAnd10WithOne(t *testing.T) {
+	expectMap := getDefaultCashList()
+	expectMap[100] = 4
+	expectMap[50] = 1
+	expectMap[20] = 1
+	expectMap[10] = 1
+	actualMap := changeCalculate(20, 500)
+	assertResult := reflect.DeepEqual(expectMap, actualMap)
+
+	if !assertResult {
+		t.Errorf("Fail")
+	}
+}
+
 func TestParkingCost20AndCash100ShouldReturn50WithOneAnd20WithOneAnd10WithOne(t *testing.T) {
-	expectMap := getDefaultCashList();
+	expectMap := getDefaultCashList()
 	expectMap[50] = 1
 	expectMap[20] = 1
 	expectMap[10] = 1
