@@ -1,4 +1,4 @@
-function CarOutCtrl($scope, $http) {
+﻿function CarOutCtrl($scope, $http) {
   $scope.provinces = ["กระบี่","กรุงเทพมหานคร","กาญจนบุรี","กาฬสินธุ์","กำแพงเพชร","ขอนแก่น","จันทบุรี","ฉะเชิงเทรา" ,"ชลบุรี","ชัยนาท","ชัยภูมิ","ชุมพร","เชียงราย","เชียงใหม่","ตรัง","ตราด","ตาก","นครนายก","นครปฐม","นครพนม","นครราชสีมา" ,"นครศรีธรรมราช","นครสวรรค์","นนทบุรี","นราธิวาส","น่าน","บุรีรัมย์","ปทุมธานี","ประจวบคีรีขันธ์","ปราจีนบุรี","ปัตตานี" ,"พะเยา","พังงา","พัทลุง","พิจิตร","พิษณุโลก","เพชรบุรี","เพชรบูรณ์","แพร่","ภูเก็ต","มหาสารคาม","มุกดาหาร","แม่ฮ่องสอน" ,"ยโสธร","ยะลา","ร้อยเอ็ด","ระนอง","ระยอง","ราชบุรี","ลพบุรี","ลำปาง","ลำพูน","เลย","ศรีสะเกษ","สกลนคร","สงขลา" ,"สตูล","สมุทรปราการ","สมุทรสงคราม","สมุทรสาคร","สระแก้ว","สระบุรี","สิงห์บุรี","สุโขทัย","สุพรรณบุรี","สุราษฎร์ธานี" ,"สุรินทร์","หนองคาย","หนองบัวลำภู","อยุธยา","อ่างทอง","อำนาจเจริญ","อุดรธานี","อุตรดิตถ์","อุทัยธานี","อุบลราชธานี"];
   $scope.selected_province = $scope.provinces[1];
   $scope.data = {
@@ -10,7 +10,7 @@ function CarOutCtrl($scope, $http) {
   };
   $scope.license_number = "";
   
-  $scope.url = "test.json";
+  $scope.url = "http://119.59.97.33:8080";
   $scope.fetch = function() {
 	  $scope.hide_result();
 	  $scope.loading();
@@ -18,10 +18,13 @@ function CarOutCtrl($scope, $http) {
 	  $scope.data.license_number = $scope.license_number;
 	  $scope.data.province = $scope.selected_province;
 	  
+	  
+	  
 	  /* Method 1 */
-	  $.getJSON($scope.url, function(result) {
-		  alert("Hello");
-	  });
+	  //$.getJSON($scope.url, function(result) {
+		  //alert("Hello");
+		  //alert(result);
+	  //});
 	  return;
 	  
 	  /* Method 2 */
