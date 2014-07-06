@@ -1,0 +1,52 @@
+*** Setting ***
+Library    Selenium2Library
+	
+
+***Variables***
+
+
+
+***Testcases ***
+NormalUse
+	Open Browser    http://119.59.97.33.80/calculate.html
+	Input Text    txt-price    90
+	Input Text    txt-cash    100
+	Click Button    btn-cal
+	
+	Element Should Contain    change-1000  0
+	Element Should Contain    change-500   0
+	Element Should Contain    change-100   0
+	Element Should Contain    change-50    0
+	Element Should Contain    change-20    0
+	Element Should Contain    change-10    1
+
+AbnormalUse
+	Open Browser    http://119.59.97.33.80/calculate.html
+	Input Text    txt-price    20
+	Input Text    txt-cash    1990
+	Click Button    btn-cal
+	
+	Element Should Contain    change-1000  1
+	Element Should Contain    change-500   1
+	Element Should Contain    change-100   4
+	Element Should Contain    change-50    1
+	Element Should Contain    change-20    1
+	Element Should Contain    change-10    0
+
+
+ValidateTxtCash
+	Open Browser    http://119.59.97.33.80/calculate.html
+	Input Text    txt-price    20
+	Input Text    txt-cash    ABC
+	Click Button    btn-cal
+
+	Element Should Be Visible    lbl-msg-warning
+	
+
+
+
+***Keywords ***
+
+
+
+

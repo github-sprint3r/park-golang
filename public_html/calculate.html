@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+	<title>Park Go :: Home</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<script src="js/jquery-1.11.1.min.js"></script>	
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+	<script src="js/angular.min.js"></script>
+	<style>
+	 #lbl-msg-warning {
+	 	background-color: red;
+	 	color: white;
+	 }
+	</style>
+</head>
+<body>
+	<div class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Park Go</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="index.html">Home</a></li>
+					<li><a href="carin.html">Car In</a></li>
+					<li><a href="carout.html">Car Out</a></li>
+					<!--li><a href="#contact">Contact</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li class="dropdown-header">Nav header</li>
+							<li><a href="#">Separated link</a></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul>
+					</li-->
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div>
+	<div class="container">
+		<div class"row">
+			<div class="col-md-12">
+				<div class="row">
+					<div class="col-md-6">
+						<label for="txt-price" class="pull-right"><h2>ค่าที่จอด</h2></label><div class="clearfix"></div>
+						<label for="txt-cash" class="pull-right"><h2>เงินที่รับ</h2></label>
+					</div>
+					<div class="col-md-6">
+						<input type="text" id="txt-price" style="margin-top: 22px;" /><span> บาท</span><div class="clearfix"></div>
+						<input type="text" id="txt-cash" style="margin-top: 42px;" /><span> บาท</span><div class="clearfix"></div>
+						<div id="lbl-msg-warning" class="hide" style="margin-top:20px;width: 154px;text-align: center;">
+							ใส่เฉพาะตัวเลขเท่านั้น
+						</div>
+						<button id="btn-cal" class="btn btn-primary" style="margin-top: 30px;">คำนวณ</button>
+					</div>
+				</div>
+				<div class="row" style="margin-top: 30px;">
+					<div class="col-md-12">
+						<table class="table table-bordered">
+							<tbody>
+								<tr>
+									<td>ธนบัตร</td>
+									<td>1000</td>
+									<td id="change-1000">-</td>
+									<td>เหรียญ</td>
+									<td>10</td>
+									<td id="change-10">-</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>500</td>
+									<td id="change-500">-</td>
+									<td></td>
+									<td>5</td>
+									<td id="change-5">-</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>100</td>
+									<td id="change-100">-</td>
+									<td></td>
+									<td>2</td>
+									<td id="change-2">-</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>50</td>
+									<td id="change-50">-</td>
+									<td></td>
+									<td>1</td>
+									<td id="change-1">-</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>20</td>
+									<td id="change-20">-</td>
+									<td>สตางค์</td>
+									<td>0.50</td>
+									<td id="change-050">-</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td>0.25</td>
+									<td id="change-025">-</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	$(document).ready(function() {
+		$("#btn-cal").on('click',function(e){
+			var price = $('#txt-price').val();
+			var cash = $('#txt-cash').val();
+			calculateChange();
+		});
+	});
+
+	function calculateChange() {
+		var price = $('#txt-price').val();
+		var cash = $('#txt-cash').val();
+		var ch1000 = $('#change-1000'),
+				ch500 = $('#change-500'),
+				ch100 = $('#change-100'),
+				ch50 = $('#change-50'),
+				ch20 = $('#change-20'),
+				ch10 = $('#change-10'),
+				ch5 = $('#change-5'),
+				ch2 = $('#change-2'),
+				ch1 = $('#change-1'),
+				ch050 = $('#change-050'),
+				ch025 = $('#change-025');
+
+		$.ajax({
+			type: "GET",
+			url: "/calculatechange/" + price + "/" + cash,
+			success: function(res) {
+				if (res.status === "success") {
+					$("#lbl-msg-warning").addClass("hide");
+					var data = res.data;
+					ch1000.val(data['1000']);
+					ch500.val(data['500']);
+					ch100.val(data['100']);
+					ch50.val(data['50']);
+					ch20.val(data['20']);
+					ch10.val(data['10']);
+					ch5.val(0);
+					ch2.val(0);
+					ch1.val(0);
+					ch050.val(0);
+					ch025.val(0);
+				}else {
+					$("#lbl-msg-warning").removeClass("hide");
+				}
+			},
+			error: function() {}
+		});
+
+	}
+</script>
+</html>
