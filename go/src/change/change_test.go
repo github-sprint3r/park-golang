@@ -3,7 +3,20 @@ package change
 import (
 	"reflect"
 	"testing"
+	"net/http"
+	"net/http/httptest"
 )
+
+func TestCalculateChangeResponeOK(t *testing.T) {
+	request, _ := http.NewRequest("GET", "http://1.2.3.4/calculatechange", nil)
+	response := httptest.NewRecorder()
+
+	calculateChange(response, request)
+
+	if response.Code != 200 {
+		t.Errorf("expect 200 but was %d", response.Code)
+	}
+}
 
 func TestParkingCost20AndCash1990ShouldReturn1000WithOneAnd500WithOneAnd100WithFourAnd50WithOneAnd20WithOne(t *testing.T) {
 	expectMap := getDefaultCashList()

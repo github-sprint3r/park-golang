@@ -1,5 +1,14 @@
 package change
 
+import (
+	"net/http"
+	"fmt"
+)
+
+func calculateChange(response http.ResponseWriter, request *http.Request) {
+	fmt.Fprintf(response, ``)
+}
+
 func getDefaultCashList() map[float64]int {
 	defaultCashList := map[float64]int{
 		1000: 0,
