@@ -67,7 +67,7 @@
 					<div class="col-md-6">
 						<input type="text" id="txt-price" style="margin-top: 22px;" /><span> บาท</span><div class="clearfix"></div>
 						<input type="text" id="txt-cash" style="margin-top: 42px;" /><span> บาท</span><div class="clearfix"></div>
-						<div id="lbl-msg-warning" style="margin-top:20px;width: 154px;text-align: center;">
+						<div id="lbl-msg-warning" class="hide" style="margin-top:20px;width: 154px;text-align: center;">
 							ใส่เฉพาะตัวเลขเท่านั้น
 						</div>
 						<button id="btn-cal" class="btn btn-primary" style="margin-top: 30px;">คำนวณ</button>
@@ -133,4 +133,55 @@
 		</div>
 	</div>
 </body>
+<script>
+	$(document).ready(function() {
+		$("#btn-cal").on('click',function(e){
+			var price = $('#txt-price').val();
+			var cash = $('#txt-cash').val();
+			calculateChange();
+		});
+	});
+
+	function calculateChange() {
+		var price = $('#txt-price').val();
+		var cash = $('#txt-cash').val();
+		var ch1000 = $('#change-1000'),
+				ch500 = $('#change-500'),
+				ch100 = $('#change-100'),
+				ch50 = $('#change-50'),
+				ch20 = $('#change-20'),
+				ch10 = $('#change-10'),
+				ch5 = $('#change-5'),
+				ch2 = $('#change-2'),
+				ch1 = $('#change-1'),
+				ch050 = $('#change-050'),
+				ch025 = $('#change-025');
+
+		$.ajax({
+			type: "GET",
+			url: "/calculatechange/" + price + "/" + cash,
+			success: function(res) {
+				if (res.status === "success") {
+					$("#lbl-msg-warning").addClass("hide");
+					var data = res.data;
+					ch1000.val(data['1000']);
+					ch500.val(data['500']);
+					ch100.val(data['100']);
+					ch50.val(data['50']);
+					ch20.val(data['20']);
+					ch10.val(data['10']);
+					ch5.val(0);
+					ch2.val(0);
+					ch1.val(0);
+					ch050.val(0);
+					ch025.val(0);
+				}else {
+					$("#lbl-msg-warning").removeClass("hide");
+				}
+			},
+			error: function() {}
+		});
+
+	}
+</script>
 </html>
