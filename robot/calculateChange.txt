@@ -3,12 +3,13 @@ Library    Selenium2Library
 	
 
 ***Variables***
+${park_golang_url}     http://localhost:8080/calculate.html
 
-
+#http://119.59.97.33:3333/calculate.html
 
 ***Testcases ***
 NormalUse
-	Open Browser    http://119.59.97.33.80/calculate.html
+	Open Browserf
 	Input Text    txt-price    90
 	Input Text    txt-cash    100
 	Click Button    btn-cal
@@ -21,7 +22,7 @@ NormalUse
 	Element Should Contain    change-10    1
 
 AbnormalUse
-	Open Browser    http://119.59.97.33.80/calculate.html
+	Open Browserf
 	Input Text    txt-price    20
 	Input Text    txt-cash    1990
 	Click Button    btn-cal
@@ -35,7 +36,7 @@ AbnormalUse
 
 
 ValidateTxtCash
-	Open Browser    http://119.59.97.33.80/calculate.html
+	Open Browserf
 	Input Text    txt-price    20
 	Input Text    txt-cash    ABC
 	Click Button    btn-cal
@@ -46,7 +47,8 @@ ValidateTxtCash
 
 
 ***Keywords ***
-
+Open Browserf 
+	Open Browser       ${park_golang_url}
 
 
 
