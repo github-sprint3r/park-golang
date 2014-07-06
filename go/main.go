@@ -1,7 +1,7 @@
 package main
 
-func changeCalculate(parkingCosting int, cash int) map[float64]int{
-	expectMap := map[float64]int {
+func getDefaultCashList() map[float64]int {
+	defaultCashList := map[float64]int {
 		1000: 0,
 		500: 0,
 		100: 0,
@@ -15,5 +15,11 @@ func changeCalculate(parkingCosting int, cash int) map[float64]int{
 		0.25: 0,
 	}
 
-	return expectMap
+	return defaultCashList
+}
+
+func changeCalculate(parkingCosting int, cash int) map[float64]int{
+	cashList := getDefaultCashList()
+
+	return cashList
 }
