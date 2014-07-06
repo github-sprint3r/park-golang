@@ -1,0 +1,31 @@
+*** Setting ***
+Library    Selenium2Library
+
+*** Variables ***
+${URL}    http://192.168.100.17:3333/charge_rate.html
+
+*** Testcases ***
+Test Validate Feild
+	[Template]    Validate Field
+	#----------------------------------------------------------------------------------------
+	#|     Element id      |     Element Lable id           |   fee (Baht)   |    result    |
+	#----------------------------------------------------------------------------------------
+		firstHourFee			firstHourFeeError					0			${EMPTY}
+		secondAndThirdHourFee	secondAndThirdHourFeeError			20			${EMPTY}
+		nextHourFee				nextHourFeeError					50			${EMPTY}
+		midnightFee				midnightFeeError					200			${EMPTY}
+		firstHourFee			firstHourFeeError					${EMPTY}	กรอกนะจ๊ะ
+		secondAndThirdHourFee	secondAndThirdHourFeeError			${EMPTY}	กรอกนะจ๊ะ
+		nextHourFee				nextHourFeeError					${EMPTY}	กรอกนะจ๊ะ
+		midnightFee				midnightFeeError					${EMPTY}	กรอกนะจ๊ะ
+
+	
+
+*** Keywords ***
+Validate Field
+	[Arguments]    ${element id}    ${element Error id}    ${fee}    ${expected result}
+	Open Browser    ${URL}
+	Input Text    ${element id}    ${fee}
+	Click Element 		firstHourFeeLabel
+	Element Should Contain    ${element Error id}    ${expected result}
+	Close Browser
