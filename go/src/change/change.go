@@ -30,6 +30,7 @@ func changeCalculate(parkingCosting int, cash int) map[float64]int {
 
 	remain := cash - parkingCosting
 
+	cashList[1000], remain = calculateRemain(remain, 1000)
 	cashList[500], remain = calculateRemain(remain, 500)
 	cashList[100], remain = calculateRemain(remain, 100)
 	cashList[50], remain = calculateRemain(remain, 50)
